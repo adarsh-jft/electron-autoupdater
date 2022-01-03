@@ -26,13 +26,17 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
-    autoUpdater.checkForUpdates()
     createWindow()
 }).catch(err => {
     console.log(err)
 })
 
 autoUpdater.autoDownload = false
+
+ipcMain.on('checkForUpdates', (event, args) => {
+    console.log('checking updates..........')
+    autoUpdater.checkForUpdates()
+})
 
 autoUpdater.on('error', (err) => {
     console.log("error..........")

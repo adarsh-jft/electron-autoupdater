@@ -3,6 +3,10 @@ import React from "react";
 
 const { ipcRenderer } = window.require("electron");
 const HomeScreen = () => {
+  const checkForUpdates = () => {
+    console.log("checking for updates");
+    ipcRenderer.send("checkForUpdates");
+  };
   return (
     <div>
       <div className="retrieveData">
@@ -13,6 +17,7 @@ const HomeScreen = () => {
             also checking update............
           </p>
           <Button>COPY</Button>
+          <Button onClick={checkForUpdates}>Check for updates</Button>
         </div>
       </div>
     </div>
