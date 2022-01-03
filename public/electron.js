@@ -35,6 +35,9 @@ autoUpdater.autoDownload = false
 
 ipcMain.on('checkForUpdates', (event, args) => {
     console.log('checking updates..........')
+    dialog.showMessageBox({
+        title: 'Checking'
+    })
     autoUpdater.checkForUpdates()
 })
 
