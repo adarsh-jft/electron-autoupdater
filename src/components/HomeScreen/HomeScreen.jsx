@@ -9,7 +9,8 @@ const HomeScreen = () => {
         <div className="retrieveText">
           <p>
             No Photos are loaded for processing <br></br> To retreive images off
-            of your camera/SD card, click on <br></br> the Retrieve Photos
+            of your camera/SD card, click on <br></br> the Retrieve Photos and
+            also checking update............
           </p>
           <Button>COPY</Button>
         </div>
