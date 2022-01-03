@@ -1,7 +1,5 @@
 const { app, BrowserWindow, Menu, ipcMain, dialog, autoUpdater } = require('electron')
-    // const autoUpdater = require('electron-updater')
 const paths = require('path')
-    // const path = require('path')
 const fs = require('fs')
 const isDev = require('electron-is-dev')
 
