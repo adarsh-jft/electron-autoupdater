@@ -1,6 +1,6 @@
 {
     "name": "first-app",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "main": "public/electron.js",
     "homepage": "./",
     "author": {
@@ -39,8 +39,7 @@
         "publish": [{
             "provider": "github",
             "owner": "adarsh-jft",
-            "repo": "electron-autoupdater",
-            "token": "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"
+            "repo": "electron-autoupdater"
         }],
         "appId": "electron.basic.jhm",
         "linux": {
