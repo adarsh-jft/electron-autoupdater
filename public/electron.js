@@ -1,11 +1,11 @@
-const { app, BrowserWindow, Menu, ipcMain, dialog } = require('electron')
+const { app, BrowserWindow, Menu, ipcMain, Notification } = require('electron')
 const paths = require('path')
 const { autoUpdater } = require('electron-updater')
-const fs = require('fs')
 const isDev = require('electron-is-dev')
 const log = require('electron-log')
 
-let updater;
+let NOTIFICATION_TITLE;
+let NOTIFICATION_BODY;
 let win;
 let template = [
     { label: 'File', submenu: [{ label: 'Logout' }, { label: 'Quit', role: 'quit' }] }
@@ -32,13 +32,7 @@ autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = 'info'
 log.info('App starting...')
 
-app.whenReady().then(() => {
-    createWindow()
-}).catch(err => {
-    console.log(err)
-})
-
-autoUpdater.autoDownload = false
+// autoUpdater.autoDownload = false
 
 const sendStatusToWindow = (text) => {
     log.info(text)
@@ -47,34 +41,18 @@ const sendStatusToWindow = (text) => {
     }
 }
 
-ipcMain.on('checkForUpdates', (event, args) => {
-    sendStatusToWindow('checking updates..........')
-        // dialog.showMessageBox({
-        //     title: 'Checking'
-        // })
-    autoUpdater.checkForUpdates()
-})
-
 autoUpdater.on('error', (err) => {
+    NOTIFICATION_TITLE = 'Basic Notification'
+    NOTIFICATION_BODY = 'Error checking Update'
+    showNotification()
     sendStatusToWindow("error in auto update..........", err.toString())
-        // dialog.showErrorBox('Error: ', err == null ? "Unknown" : (err.stack || err).toString())
 })
 
 autoUpdater.on('update-available', () => {
+    NOTIFICATION_TITLE = 'Basic Notification'
+    NOTIFICATION_BODY = 'Update avaialable'
+    showNotification()
     sendStatusToWindow('update available.............')
-        // dialog.showMessageBox({
-        //     type: 'info',
-        //     title: 'Found Updates',
-        //     message: 'Found updates, do you want to update now ?',
-        //     buttons: ['Sure', 'No']
-        // }).then(buttonIndex => {
-        //     if (buttonIndex === 0) {
-        //         autoUpdater.downloadUpdate()
-        //     } else {
-        //         updater.enabled = true
-        //         updater = null
-        //     }
-        // })
 })
 
 autoUpdater.on('download-progress', (progressObj) => {
@@ -84,35 +62,37 @@ autoUpdater.on('download-progress', (progressObj) => {
     sendStatusToWindow(log_message);
 })
 autoUpdater.on('update-downloaded', (info) => {
+    NOTIFICATION_TITLE = 'Basic Notification'
+    NOTIFICATION_BODY = 'Update downloaded'
     sendStatusToWindow('Update downloaded');
+    showNotification()
+    autoUpdater.quitAndInstall()
 });
 
 autoUpdater.on('update-not-available', () => {
+    NOTIFICATION_TITLE = 'Basic Notification'
+    NOTIFICATION_BODY = 'Update not available'
+    showNotification()
     sendStatusToWindow('update not available..............')
-        // dialog.showMessageBox({
-        //     title: 'No Updates',
-        //     message: 'Current version is up to date'
-        // })
-    updater.enabled = true
-    updater = null
 })
 
-autoUpdater.on('updated-download', () => {
-        sendStatusToWindow('update download.................')
-        autoUpdater.quitAndInstall()
-            // dialog.showMessageBox({
-            //     title: 'Install Updates',
-            //     message: 'Updates downloaded, application will be closed for update...'
-            // }).then(() => {
-            //     setImmediate(() => autoUpdater.quitAndInstall())
-            // })
-    })
-    // ipcMain.on("copy", (event, args) => {
-    //     fs.copyFile("/home/jft-f01/Pictures/lot102.png", (paths.join(__dirname, 'InProcess/', `lot102.png`)), (err) => {
-    //         if (err) {
-    //             console.log(err)
-    //         } else {
-    //             console.log("copied")
-    //         }
-    //     })
-    // })
+app.whenReady().then(() => {
+    createWindow()
+    autoUpdater.checkForUpdates()
+}).catch(err => {
+    console.log(err)
+})
+
+function showNotification() {
+    new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY }).show()
+}
+
+// ipcMain.on("copy", (event, args) => {
+//     fs.copyFile("/home/jft-f01/Pictures/lot102.png", (paths.join(__dirname, 'InProcess/', `lot102.png`)), (err) => {
+//         if (err) {
+//             console.log(err)
+//         } else {
+//             console.log("copied")
+//         }
+//     })
+// })
