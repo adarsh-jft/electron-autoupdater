@@ -1,6 +1,6 @@
 {
     "name": "first-app",
-    "version": "0.6.0",
+    "version": "0.7.0",
     "main": "public/electron.js",
     "homepage": "./",
     "author": {
@@ -58,7 +58,7 @@
         "pack": "electron builder --dir",
         "dist": "electron-builder",
         "react-start": "react-scripts start",
-        "publish": "electron-builder -p always",
+        "publish": "electron-builder --x64 --win --linux -p always",
         "react-build": "react-scripts build",
         "react-test": "react-scripts test",
         "react-eject": "react-scripts eject",
