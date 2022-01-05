@@ -7,6 +7,10 @@ const HomeScreen = () => {
     console.log("checking for updates");
     ipcRenderer.send("checkForUpdates");
   };
+  const { ipcRenderer } = window.require("electron");
+  ipcRenderer.on("message", (event, args) => {
+    console.log(args);
+  });
   return (
     <div>
       <div className="retrieveData">
@@ -14,7 +18,6 @@ const HomeScreen = () => {
           <p>
             No Photos are loaded for processing <br></br> To retreive images off
             of your camera/SD card, click on <br></br> the Retrieve Photos and
-            also checking update............
           </p>
           <Button>COPY</Button>
           <Button onClick={checkForUpdates}>Check for updates</Button>
