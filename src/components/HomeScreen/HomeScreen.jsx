@@ -15,7 +15,7 @@ const HomeScreen = () => {
     <div>
       <div className="retrieveData">
         <div className="retrieveText">
-          <p>Checking update version 0.3.0</p>
+          <p>Checking update version 0.4.0</p>
           <Button>COPY</Button>
           <Button onClick={checkForUpdates}>Check for updates</Button>
         </div>

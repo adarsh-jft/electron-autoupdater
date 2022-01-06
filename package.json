@@ -39,8 +39,7 @@
         "publish": [{
             "provider": "github",
             "owner": "adarsh-jft",
-            "repo": "electron-autoupdater",
-            "token": "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"
+            "repo": "electron-autoupdater"
         }],
         "appId": "electron.basic.jhm",
         "linux": {
