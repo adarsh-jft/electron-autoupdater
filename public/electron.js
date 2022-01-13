@@ -61,9 +61,13 @@ autoUpdater.on('update-available', () => {
 
         ]
     }).then(res => { res = res.response })
+    sendStatusToWindow("inside update available")
     if (res === 0) {
+        console.log("inside res")
+        sendStatusToWindow("res value", res)
         autoUpdater.downloadUpdate()
     }
+    sendStatusToWindow("inside update available after if")
     sendStatusToWindow('update available.............')
 })
 

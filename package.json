@@ -1,6 +1,6 @@
 {
     "name": "first-app",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "main": "public/electron.js",
     "homepage": "./",
     "author": {
