@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, ipcMain, Notification } = require('electron')
+const { app, BrowserWindow, Menu, ipcMain, Notification, dialog } = require('electron')
 const paths = require('path')
 const { autoUpdater } = require('electron-updater')
 const isDev = require('electron-is-dev')
@@ -32,7 +32,7 @@ autoUpdater.logger = log
 autoUpdater.logger.transports.file.level = 'info'
 log.info('App starting...')
 
-// autoUpdater.autoDownload = false
+autoUpdater.autoDownload = false
 
 const sendStatusToWindow = (text) => {
     log.info(text)
@@ -49,9 +49,21 @@ autoUpdater.on('error', (err) => {
 })
 
 autoUpdater.on('update-available', () => {
+    let res;
     NOTIFICATION_TITLE = 'Basic Notification'
     NOTIFICATION_BODY = 'Update avaialable'
     showNotification()
+    dialog.showMessageBox(win, {
+        message: "HELLO",
+        buttons: [
+            'Yes',
+            'No'
+
+        ]
+    }).then(res => { res = res.response })
+    if (res === 0) {
+        autoUpdater.downloadUpdate()
+    }
     sendStatusToWindow('update available.............')
 })
 
@@ -78,7 +90,7 @@ autoUpdater.on('update-not-available', () => {
 
 app.whenReady().then(() => {
     createWindow()
-    autoUpdater.checkForUpdates()
+        // autoUpdater.checkForUpdates()
 }).catch(err => {
     console.log(err)
 })
