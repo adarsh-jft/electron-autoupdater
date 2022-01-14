@@ -76,10 +76,10 @@ autoUpdater.on('download-progress', (progressObj) => {
     let log_message = "Download speed: " + progressObj.bytesPerSecond;
     log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
     let downProg = progressObj.percent / 100
-    downProg = downProg.toFixed(2)
+    var dwonProgress = Math.round((downProg + Number.EPSILON) * 100) / 100
         // log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
     sendStatusToWindow(log_message);
-    sendStatusToWindow(downProg);
+    sendStatusToWindow(dwonProgress);
     win.setProgressBar(downProg)
 })
 autoUpdater.on('update-downloaded', (info) => {
