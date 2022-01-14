@@ -98,7 +98,7 @@ autoUpdater.on('update-not-available', () => {
 
 app.whenReady().then(() => {
     createWindow()
-        // autoUpdater.checkForUpdates()
+    autoUpdater.checkForUpdates()
 }).catch(err => {
     console.log(err)
 })
