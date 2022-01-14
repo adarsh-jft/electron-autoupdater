@@ -72,7 +72,8 @@ autoUpdater.on('update-available', () => {
 })
 
 autoUpdater.on('download-progress', (progressObj) => {
-    let log_message = "Download speed: " + progressObj.bytesPerSecond;
+    sendStatusToWindow(progressObj)
+    let log_message = "Download speed: " + progressObj.megabytesPerSecond;
     log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
     log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
     sendStatusToWindow(log_message);
@@ -82,7 +83,7 @@ autoUpdater.on('update-downloaded', (info) => {
     NOTIFICATION_BODY = 'Update downloaded'
     sendStatusToWindow('Update downloaded');
     showNotification()
-    autoUpdater.quitAndInstall()
+        // autoUpdater.quitAndInstall()
 });
 
 autoUpdater.on('update-not-available', () => {
