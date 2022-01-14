@@ -77,6 +77,7 @@ autoUpdater.on('download-progress', (progressObj) => {
     log_message = log_message + ' - Downloaded ' + Math.floor(progressObj.percent) + '%';
     let downProg = Math.floor(progressObj.percent % 100)
         // log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
+    sendStatusToWindow(log_message);
     sendStatusToWindow(downProg);
     win.setProgressBar(downProg)
 })
