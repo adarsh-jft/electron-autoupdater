@@ -1,6 +1,6 @@
 {
     "name": "first-app",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "main": "public/electron.js",
     "homepage": "./",
     "author": {
@@ -44,8 +44,7 @@
         "appId": "electron.basic.jhm",
         "linux": {
             "target": [
-                "AppImage",
-                "deb"
+                "AppImage"
             ]
         },
         "win": {
