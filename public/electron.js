@@ -18,6 +18,7 @@ function createWindow() {
     win = new BrowserWindow({
         width: 800,
         height: 600,
+        icon: paths.join(__dirname, 'logo192.png'),
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,
@@ -77,9 +78,7 @@ autoUpdater.on('download-progress', (progressObj) => {
     let downProg = Math.floor(progressObj.percent % 100)
         // log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
     sendStatusToWindow(log_message);
-    win.setProgressBar(downProg, {
-        mode: "normal"
-    })
+    win.setProgressBar(downProg)
 })
 autoUpdater.on('update-downloaded', (info) => {
     NOTIFICATION_TITLE = 'Basic Notification'
@@ -98,7 +97,7 @@ autoUpdater.on('update-not-available', () => {
 
 app.whenReady().then(() => {
     createWindow()
-    autoUpdater.checkForUpdates()
+        // autoUpdater.checkForUpdates()
 }).catch(err => {
     console.log(err)
 })

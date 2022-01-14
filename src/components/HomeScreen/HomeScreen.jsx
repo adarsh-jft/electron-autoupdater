@@ -5,7 +5,6 @@ const { ipcRenderer } = window.require("electron");
 const HomeScreen = () => {
   const checkForUpdates = () => {
     console.log("checking for updates");
-    ipcRenderer.send("checkForUpdates");
   };
   const { ipcRenderer } = window.require("electron");
   ipcRenderer.on("message", (event, args) => {
