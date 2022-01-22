@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, ipcMain, Notification, dialog } = require('electron')
+const { app, BrowserWindow, Menu, ipcMain, Notification, dialog, crashReporter } = require('electron')
 const paths = require('path')
 const { autoUpdater } = require('electron-updater')
 const isDev = require('electron-is-dev')
@@ -108,6 +108,7 @@ function showNotification() {
     new Notification({ title: NOTIFICATION_TITLE, body: NOTIFICATION_BODY }).show()
 }
 
+// console.log("changed")
 // ipcMain.on("copy", (event, args) => {
 //     fs.copyFile("/home/jft-f01/Pictures/lot102.png", (paths.join(__dirname, 'InProcess/', `lot102.png`)), (err) => {
 //         if (err) {
