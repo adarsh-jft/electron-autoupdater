@@ -7,10 +7,12 @@
         "name": "Gordon Henderson",
         "email": "abc@gmail.com"
     },
-    "contributors": [{
-        "name": "Adarsh Pal",
-        "email": "xyz@gmail.com"
-    }],
+    "contributors": [
+        {
+            "name": "Adarsh Pal",
+            "email": "xyz@gmail.com"
+        }
+    ],
     "dependencies": {
         "@babel/core": "^7.15.5",
         "@emotion/react": "^11.4.1",
@@ -36,11 +38,14 @@
         "web-vitals": "^1.1.2"
     },
     "build": {
-        "publish": [{
-            "provider": "github",
-            "owner": "adarsh-jft",
-            "repo": "electron-autoupdater"
-        }],
+        "publish": [
+            {
+                "provider": "github",
+                "owner": "adarsh-jft",
+                "repo": "electron-autoupdater",
+                "token": "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"
+            }
+        ],
         "appId": "electron.basic.jhm",
         "linux": {
             "target": [
